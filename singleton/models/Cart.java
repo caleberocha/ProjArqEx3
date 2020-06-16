@@ -2,8 +2,6 @@ package singleton.models;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
-
 import singleton.config.Constants;
 
 public final class Cart {
@@ -50,6 +48,5 @@ public final class Cart {
         }
         sb.append(String.format(Constants.ITEM_DISPLAY_FORMAT, Constants.TOTAL, this.getTotal()));
         return sb.toString();
-        // return this.items.stream().map(Object::toString).collect(Collectors.joining(System.lineSeparator()));
     }
 }
