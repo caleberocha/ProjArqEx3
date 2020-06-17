@@ -15,6 +15,11 @@ public final class Input {
         return in.nextLine();
     }
 
+    public static void pause() {
+        System.out.print("Pressione ENTER para continuar.");
+        in.nextLine();
+    }
+
     public static void clear() {
         if(System.getProperty("os.name").contains("Windows")) {
             try {

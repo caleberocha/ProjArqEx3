@@ -1,7 +1,14 @@
 package singleton.views;
 
+import java.math.BigDecimal;
+
 import singleton.controllers.CartController;
+import singleton.exceptions.NotImplementedException;
+import singleton.exceptions.PayNotAllowedException;
+import singleton.exceptions.TooMuchCashException;
 import singleton.models.Cart;
+import singleton.strategies.PayMethod;
+import singleton.factories.PayMethodFactory;
 import singleton.utils.Input;
 
 public class CartView {
@@ -16,25 +23,17 @@ public class CartView {
 
     public void command() {
         boolean running = true;
-        while (running) {
-            this.showCart();
-            System.out.println();
-            this.showCommands();
-            String cmd = Input.input();
-            switch (cmd) {
-                case "add":
-                    this.addItem();
-                    break;
-                case "sair":
-                    running = false;
-                    break;
-                default:
-                    System.out.println("Comando não reconhecido. Pressione ENTER para continuar.");
-                    Input.input();
-            }
-            Input.clear();
+
+        while (this.cart.isOpen() && running) {
+            running = handleCart();
         }
+
+        while (this.cart.needPayment() && running) {
+            running = handlePayment();
+        }
+
         Input.close();
+        System.out.println("Obrigado pela preferẽncia =)");
         System.out.println("ADIOS");
     }
 
@@ -47,8 +46,15 @@ public class CartView {
 
     public void showCommands() {
         System.out.println("Comandos:");
-        System.out.println("add -> Adicionar item ao carrinho");
-        System.out.println("sair -> Sair do programa");
+        System.out.println("add    -> Adicionar item ao carrinho");
+        System.out.println("fechar -> Fechar carrinho");
+        System.out.println("sair   -> Sair do programa");
+    }
+
+    public void showPayMethods() {
+        System.out.println("Como deseja pagar?");
+        System.out.println("1 - Dinheiro");
+        System.out.println("2 - Cartão de crédito");
     }
 
     public void addItem() {
@@ -66,5 +72,78 @@ public class CartView {
                 System.out.println("Formato do preço incorreto.");
             }
         }
+    }
+
+    public boolean handleCart() {
+        this.showCart();
+        System.out.println();
+
+        this.showCommands();
+        String cmd = Input.input();
+        switch (cmd) {
+            case "add":
+                this.addItem();
+                break;
+            case "fechar":
+                this.controller.close();
+                break;
+            case "sair":
+                return false;
+            default:
+                System.out.println("Comando não reconhecido.");
+                Input.pause();
+        }
+
+        Input.clear();
+
+        return true;
+    }
+
+    public boolean handlePayment() {
+        BigDecimal amount;
+        PayMethod payMethod;
+
+        System.out.format("Total a pagar: %s", this.cart.getToPay());
+        System.out.println();
+
+        while (true) {
+            try {
+                System.out.println("O pagamento pode ser dividido em várias formas. Quanto deseja pagar?");
+                amount = new BigDecimal(Input.input()).setScale(2);
+                if (amount.compareTo(this.cart.getToPay()) == 1) {
+                    throw new TooMuchCashException("Dinheiro demais! Tá rico, é?");
+                }
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Número inválido");
+            } catch (TooMuchCashException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        this.showPayMethods();
+        while(true) {
+            try {
+                String method = Input.input();
+                payMethod = PayMethodFactory.addPayMethod(method);
+                break;
+            } catch (NotImplementedException e) {
+                System.out.println(e.getMessage());
+                Input.pause();
+            }
+        }
+        payMethod.getPayDetails();
+        if(payMethod.pay(amount)) {
+            try {
+                this.controller.pay(amount);
+            } catch (PayNotAllowedException e) {
+                System.out.println(e.getMessage());
+                Input.pause();
+            }
+        };
+
+        Input.clear();
+
+        return true;
     }
 }

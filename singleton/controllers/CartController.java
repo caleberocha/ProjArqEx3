@@ -1,22 +1,27 @@
 package singleton.controllers;
 
-import singleton.models.Cart;
-import singleton.models.Item;
+import java.math.BigDecimal;
+
+import singleton.exceptions.PayNotAllowedException;
+import singleton.facades.CartFacade;
 
 public class CartController {
-    private Cart cart;
+    private CartFacade cart;
 
     public CartController() {
-        this.cart = Cart.getInstance();
+        this.cart = new CartFacade();
     }
 
     public boolean addItem(String nome, String preco) {
-        Item item = new Item(nome, preco);
-        return cart.addItem(item);
+        return cart.addItem(nome, preco);
     }
 
-    public boolean removeItem(Item item) {
-        return cart.removeItem(item);
+    public boolean close() {
+        return cart.close();
+    }
+
+    public void pay(BigDecimal amount) throws PayNotAllowedException {
+        cart.pay(amount);
     }
 
 }

@@ -7,6 +7,8 @@ import singleton.config.Constants;
 public final class Cart {
     private final static Cart INSTANCE = new Cart();
     private ArrayList<Item> items = new ArrayList<>();
+    private boolean closed = false;
+    private BigDecimal toPay;
 
     private Cart() {
 
@@ -39,6 +41,31 @@ public final class Cart {
     public String getTotal() {
         return this.items.stream().map(item -> new BigDecimal(item.getPreco()))
                 .reduce(BigDecimal.ZERO, (total, item) -> item.add(total)).toString();
+    }
+
+    public BigDecimal getToPay() {
+        return this.toPay;
+    }
+
+    public boolean needPayment() {
+        return getToPay().compareTo(BigDecimal.ZERO) > 0;
+    }
+
+    public void pay(BigDecimal amount) {
+        toPay = toPay.subtract(amount);
+    }
+
+    public boolean isOpen() {
+        return !closed;
+    }
+
+    public boolean close() {
+        if(closed) {
+            return false;
+        }
+        toPay = new BigDecimal(getTotal());
+        closed = true;
+        return true;
     }
 
     public String toString() {
