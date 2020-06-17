@@ -46,15 +46,15 @@ public class CartView {
 
     public void showCommands() {
         System.out.println("Comandos:");
-        System.out.println("add    -> Adicionar item ao carrinho");
-        System.out.println("fechar -> Fechar carrinho");
-        System.out.println("sair   -> Sair do programa");
+        System.out.println("1 -> Adicionar item ao carrinho");
+        System.out.println("2 -> Fechar carrinho");
+        System.out.println("0 -> Sair do programa");
     }
 
     public void showPayMethods() {
         System.out.println("Como deseja pagar?");
-        System.out.println("1 - Dinheiro");
-        System.out.println("2 - Cartão de crédito");
+        System.out.println("1 -> Dinheiro");
+        System.out.println("2 -> Cartão de crédito");
     }
 
     public void addItem() {
@@ -81,13 +81,13 @@ public class CartView {
         this.showCommands();
         String cmd = Input.input();
         switch (cmd) {
-            case "add":
+            case "1":
                 this.addItem();
                 break;
-            case "fechar":
+            case "2":
                 this.controller.close();
                 break;
-            case "sair":
+            case "0":
                 return false;
             default:
                 System.out.println("Comando não reconhecido.");
