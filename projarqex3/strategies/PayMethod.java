@@ -1,4 +1,4 @@
-package singleton.strategies;
+package projarqex3.strategies;
 
 import java.math.BigDecimal;
 

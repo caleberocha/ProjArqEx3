@@ -1,4 +1,4 @@
-package singleton.config;
+package projarqex3.config;
 
 public final class Constants {
     public static final String TOTAL = "TOTAL";

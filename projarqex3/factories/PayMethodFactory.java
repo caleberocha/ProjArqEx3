@@ -1,9 +1,9 @@
-package singleton.factories;
+package projarqex3.factories;
 
-import singleton.exceptions.NotImplementedException;
-import singleton.strategies.PayCash;
-import singleton.strategies.PayCreditCard;
-import singleton.strategies.PayMethod;
+import projarqex3.exceptions.NotImplementedException;
+import projarqex3.strategies.PayCash;
+import projarqex3.strategies.PayCreditCard;
+import projarqex3.strategies.PayMethod;
 
 public final class PayMethodFactory {
     private PayMethodFactory() {

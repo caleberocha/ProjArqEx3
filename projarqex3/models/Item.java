@@ -1,9 +1,9 @@
-package singleton.models;
+package projarqex3.models;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import singleton.config.Constants;
+import projarqex3.config.Constants;
 
 public class Item {
     private String nome;

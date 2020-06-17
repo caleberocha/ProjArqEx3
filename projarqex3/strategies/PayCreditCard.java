@@ -1,9 +1,9 @@
-package singleton.strategies;
+package projarqex3.strategies;
 
 import java.math.BigDecimal;
 
-import singleton.models.CreditCard;
-import singleton.utils.Input;
+import projarqex3.models.CreditCard;
+import projarqex3.utils.Input;
 
 public class PayCreditCard implements PayMethod {
     private CreditCard card;

@@ -1,9 +1,9 @@
-package singleton.controllers;
+package projarqex3.controllers;
 
 import java.math.BigDecimal;
 
-import singleton.exceptions.PayNotAllowedException;
-import singleton.facades.CartFacade;
+import projarqex3.exceptions.PayNotAllowedException;
+import projarqex3.facades.CartFacade;
 
 public class CartController {
     private CartFacade cart;

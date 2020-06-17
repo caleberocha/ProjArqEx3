@@ -1,6 +1,6 @@
-package singleton;
+package projarqex3;
 
-import singleton.views.CartView;
+import projarqex3.views.CartView;
 
 public class App {
     public static void main (String[] args) {

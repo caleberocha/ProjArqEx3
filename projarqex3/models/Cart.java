@@ -1,8 +1,9 @@
-package singleton.models;
+package projarqex3.models;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import singleton.config.Constants;
+
+import projarqex3.config.Constants;
 
 public final class Cart {
     private final static Cart INSTANCE = new Cart();

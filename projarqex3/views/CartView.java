@@ -1,15 +1,15 @@
-package singleton.views;
+package projarqex3.views;
 
 import java.math.BigDecimal;
 
-import singleton.controllers.CartController;
-import singleton.exceptions.NotImplementedException;
-import singleton.exceptions.PayNotAllowedException;
-import singleton.exceptions.TooMuchCashException;
-import singleton.models.Cart;
-import singleton.strategies.PayMethod;
-import singleton.factories.PayMethodFactory;
-import singleton.utils.Input;
+import projarqex3.controllers.CartController;
+import projarqex3.exceptions.NotImplementedException;
+import projarqex3.exceptions.PayNotAllowedException;
+import projarqex3.exceptions.TooMuchCashException;
+import projarqex3.factories.PayMethodFactory;
+import projarqex3.models.Cart;
+import projarqex3.strategies.PayMethod;
+import projarqex3.utils.Input;
 
 public class CartView {
     private Cart cart;

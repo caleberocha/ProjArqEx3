@@ -1,4 +1,4 @@
-package singleton.utils;
+package projarqex3.utils;
 
 import java.io.IOException;
 import java.util.Scanner;

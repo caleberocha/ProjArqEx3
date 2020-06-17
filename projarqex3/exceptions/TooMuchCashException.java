@@ -1,4 +1,4 @@
-package singleton.exceptions;
+package projarqex3.exceptions;
 
 public class TooMuchCashException extends Exception {
     /**

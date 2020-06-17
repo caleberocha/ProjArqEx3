@@ -1,11 +1,11 @@
-package singleton.facades;
+package projarqex3.facades;
 
 import java.math.BigDecimal;
 
-import singleton.exceptions.PayNotAllowedException;
-import singleton.factories.ItemFactory;
-import singleton.models.Cart;
-import singleton.models.Item;
+import projarqex3.exceptions.PayNotAllowedException;
+import projarqex3.factories.ItemFactory;
+import projarqex3.models.Cart;
+import projarqex3.models.Item;
 
 public class CartFacade {
     private Cart cart;

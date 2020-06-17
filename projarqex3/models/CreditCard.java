@@ -1,4 +1,4 @@
-package singleton.models;
+package projarqex3.models;
 
 public class CreditCard {
     private String number;

@@ -1,6 +1,6 @@
-package singleton.factories;
+package projarqex3.factories;
 
-import singleton.models.Item;
+import projarqex3.models.Item;
 
 public final class ItemFactory {
     private ItemFactory() {
